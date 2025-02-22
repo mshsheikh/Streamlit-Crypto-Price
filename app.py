@@ -150,6 +150,7 @@ def render_coin_details(coin_id, coin_name, coin_symbol, crypto_data):
         timezone = pytz.timezone(user_timezone)
         df.index = df.index.tz_localize("UTC").tz_convert(timezone)
 
+        # Plot using Streamlit's built-in chart
         st.subheader(f"{coin_name} Price Movement (Last 24 Hours)")
         st.line_chart(df["price"], use_container_width=True)
     else:
