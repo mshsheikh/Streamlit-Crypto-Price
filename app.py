@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import requests
 from datetime import datetime, timedelta
-import pytz
-from gtts import gTTS
-import os
 
 # ----------------------
 # App Configuration
@@ -18,7 +15,7 @@ st.set_page_config(
 # ----------------------
 # Fetch Crypto Data
 # ----------------------
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=300)  # Cache data for 5 minutes
 def get_crypto_data():
     url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true"
     try:
@@ -29,7 +26,7 @@ def get_crypto_data():
         st.error(f"Error fetching crypto data: {e}")
         return {}
 
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=300)  # Cache data for 5 minutes
 def get_historical_data(crypto_id, days=1):
     end_date = datetime.now()
     start_date = end_date - timedelta(days=days)
@@ -46,35 +43,9 @@ def get_historical_data(crypto_id, days=1):
         st.error(f"Error fetching historical data: {e}")
         return pd.DataFrame()
 
-# ----------------
-# Text-to-Speech
-# ----------------
-def speak(text):
-    try:
-        tts = gTTS(text=text, lang='en')
-        tts.save("report.mp3")
-        st.audio("report.mp3", format="audio/mp3")
-        os.remove("report.mp3")
-    except Exception as e:
-        st.error(f"Error generating speech: {e}")
-
-# ----------------------
-# Get User's Time Zone
-# ----------------------
-def get_user_timezone():
-    if "timezone" not in st.session_state:
-        st.markdown("""
-        <script>
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            window.parent.postMessage({type: "TIMEZONE", data: timezone}, "*");
-        </script>
-        """, unsafe_allow_html=True)
-        return "UTC"
-    return st.session_state.timezone
-
-# ----------------------
+# -----------
 # Dashboard
-# ----------------------
+# -----------
 def render_dashboard():
     st.sidebar.title("Crypto Options")
     selected_coin = st.sidebar.selectbox("Select a Coin", ["Bitcoin (BTC)", "Ethereum (ETH)"])
@@ -118,39 +89,9 @@ def render_coin_details(coin_id, coin_name, coin_symbol, crypto_data):
     with col3:
         st.metric(label="Market Cap (USD)", value=f"${market_cap:,}")
 
-    st.markdown("""
-    <style>
-        .report-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .report-card p {
-            font-size: 1rem;
-            color: #f8fafc;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-    st.markdown(f"""
-    <div class="report-card">
-        <p>{report_text}</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Listen Button
-    if st.button("Listen Report"):
-        speak(report_text)
-
     # Trading Chart Display
     df = get_historical_data(coin_id, days=1)
     if not df.empty:
-        user_timezone = get_user_timezone()
-        timezone = pytz.timezone(user_timezone)
-        df.index = df.index.tz_localize("UTC").tz_convert(timezone)
-
-        # Plot using Streamlit's built-in chart
         st.subheader(f"{coin_name} Price Movement (Last 24 Hours)")
         st.line_chart(df["price"], use_container_width=True)
     else:
