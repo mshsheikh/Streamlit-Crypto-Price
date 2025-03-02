@@ -7,7 +7,7 @@ import json
 import pyttsx3
 import pytz
 
-# -------------------
+# ------------------
 # App Configuration
 # -------------------
 st.set_page_config(
