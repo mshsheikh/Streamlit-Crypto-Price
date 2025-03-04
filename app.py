@@ -32,7 +32,7 @@ def load_users():
 
 # --------------------
 # Authentication
-# ---------------------
+# --------------------
 def authenticate(username, password):
     users = load_users()
     if username in users and users[username] == password:
