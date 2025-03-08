@@ -41,7 +41,7 @@ def authenticate(username, password):
 
 # ---------------------
 # Fetch Crypto Data
-# ----------------------
+# ---------------------
 @st.cache_data(ttl=60)
 def get_crypto_data():
     url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true"
