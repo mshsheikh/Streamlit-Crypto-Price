@@ -39,7 +39,7 @@ def authenticate(username, password):
         return True
     return False
 
-# -------------------
+# ------------------
 # Fetch Crypto Data
 # -------------------
 @st.cache_data(ttl=60)
