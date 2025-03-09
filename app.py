@@ -72,7 +72,7 @@ def get_historical_data(crypto_id, days=1):
 
 # ---------------
 # Text-to-Speech
-# ----------------
+# ---------------
 def speak(text):
     engine = pyttsx3.init()
     engine.setProperty('rate', 150)
