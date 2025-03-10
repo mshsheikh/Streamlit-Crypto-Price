@@ -95,7 +95,7 @@ def get_user_timezone():
 
 # ----------------
 # Login Page
-# -----------------
+# ----------------
 def show_login():
     st.title("Login")
     username = st.text_input("Username")
