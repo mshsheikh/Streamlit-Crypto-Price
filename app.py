@@ -93,7 +93,7 @@ def get_user_timezone():
         return "UTC"
     return st.session_state.timezone
 
-# --------------------
+# -------------------
 # Login Page
 # --------------------
 def show_login():
