@@ -237,7 +237,7 @@ def render_coin_details(coin_id, coin_name, coin_symbol, crypto_data):
 
 #  ------------
 # Main Function
-# --------------
+# -------------
 def main():
     if 'authenticated' not in st.session_state:
         show_login()
