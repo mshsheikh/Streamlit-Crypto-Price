@@ -109,7 +109,7 @@ def show_login():
 
 #   -------
 #  Dashboard
-#  ----------
+#  ---------
 
 def render_dashboard():
     st.sidebar.title("Crypto Options")
