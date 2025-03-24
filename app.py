@@ -108,7 +108,7 @@ def show_login():
             st.error("Invalid credentials")
 
 #  ----------
-# Dashboard
+#  Dashboard
 #  ----------
 
 def render_dashboard():
