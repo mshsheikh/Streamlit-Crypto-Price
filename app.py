@@ -79,9 +79,9 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-#  ------------------
-# Get User's Time Zone
-#  ------------------
+#   ------------------
+#  Get User's Time Zone
+#   ------------------
 def get_user_timezone():
     if "timezone" not in st.session_state:
         st.markdown("""
