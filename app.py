@@ -81,7 +81,7 @@ def speak(text):
 
 # --------------------
 # Get User's Time Zone
-# ---------------------
+# --------------------
 def get_user_timezone():
     if "timezone" not in st.session_state:
         st.markdown("""
