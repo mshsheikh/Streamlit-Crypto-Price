@@ -82,6 +82,7 @@ def speak(text):
 #   ------------------
 #  Get User's Time Zone
 #   ------------------
+
 def get_user_timezone():
     if "timezone" not in st.session_state:
         st.markdown("""
@@ -237,7 +238,7 @@ def render_coin_details(coin_id, coin_name, coin_symbol, crypto_data):
     else:
         st.error("Unable to load data.")
 
-#    ---------
+#   -----------
 #  Main Function
 #    ---------
 
