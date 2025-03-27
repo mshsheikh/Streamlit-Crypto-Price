@@ -70,9 +70,9 @@ def get_historical_data(crypto_id, days=1):
         st.error(f"Error fetching historical data: {e}")
         return pd.DataFrame()
 
-# --------------
+#  ------------
 # Text-to-Speech
-# --------------
+#  ------------
 
 def speak(text):
     engine = pyttsx3.init()
