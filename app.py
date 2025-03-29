@@ -30,8 +30,8 @@ def load_users():
         st.error(f"Error loading user data: {e}")
         return {}
 
-#  -------------
-# Authentication
+#  ------------
+#  Authentication
 #  -------------
 
 def authenticate(username, password):
