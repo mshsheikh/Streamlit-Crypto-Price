@@ -39,9 +39,9 @@ def authenticate(username, password):
         return True
     return False
 
-# ---------------
-# Fetch Crypto Data
-# ---------------
+#   ---------------
+#  Fetch Crypto Data
+#   ---------------
 
 @st.cache_data(ttl=60)
 def get_crypto_data():
