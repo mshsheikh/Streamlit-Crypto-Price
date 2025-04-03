@@ -19,6 +19,7 @@ st.set_page_config(
 # -------------
 # Load User Data
 # -------------
+
 def load_users():
     try:
         with open("user.json", "r") as f:
