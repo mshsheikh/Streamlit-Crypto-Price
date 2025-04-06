@@ -8,7 +8,7 @@ import pyttsx3
 import pytz
 
 #  --------------
-# App Configuration
+#  App Configuration
 #  --------------
 
 st.set_page_config(
