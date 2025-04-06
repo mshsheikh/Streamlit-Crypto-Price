@@ -10,6 +10,7 @@ import pytz
 # ------------------
 # App Configuration
 # ------------------
+
 st.set_page_config(
     page_title="Crypto Reports",
     page_icon="🪙",
